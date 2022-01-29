@@ -1,6 +1,6 @@
 const main = async () => {
   // Solidityファイルをコンパイルする
-  const nftContractFactory = await hre.ethers.getContractFactory('MyEpicNFT');
+  const nftContractFactory = await hre.ethers.getContractFactory('MyEpicNFTMultipleSVGs');
 
   // Hardhatによって小さいEthereumNetworkを構築し、かつSolidityファイルに書かれたスマートコントラクトを実行する
   const nftContract = await nftContractFactory.deploy();
@@ -20,7 +20,7 @@ const main = async () => {
   // 2個目のNFTをミントしてみる（NFTをミントする関数）
   txn = await nftContract.makeAnEpicNFT()
 
-  // NFTが民とされるまで待つ
+  // NFTがミントされるまで待つ
   await txn.wait()
 };
 

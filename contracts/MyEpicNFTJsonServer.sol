@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+
 // 継承の仕組み。is で カンマの右が優先される。
 // https://solidity-by-example.org/inheritance/
 
@@ -31,7 +33,7 @@ import "hardhat/console.sol";
 
 
 // コントラクト（Solidityファイル）から、関数を利用するために、継承する。ERC721URIStorageという
-contract MyEpicNFT is ERC721URIStorage {
+contract MyEpicNFTJsonServer is ERC721URIStorage {
   // Magic given to us by OpenZeppelin to help us keep track of tokenIds.
   using Counters for Counters.Counter;
 
@@ -39,8 +41,8 @@ contract MyEpicNFT is ERC721URIStorage {
   // _tokenIdsはステート変数で、これを変更すると値が直接コントラクトに保存されます。
   Counters.Counter private _tokenIds;
 
-  //
-  constructor() ERC721 ("SquareNFT", "SQUARE") {
+
+  constructor() ERC721 ("Dofuku NFT", "DOFUKU") {
     console.log("This is my NFT contract. Woah!");
   }
 
