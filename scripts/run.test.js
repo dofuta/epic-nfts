@@ -1,6 +1,15 @@
+// 実行
+// npx hardhat run scripts/run.js
+
+// hre = The Hardhat Runtime Environment
+// npx hardhat run することで、hardhatがhreを読み込む。
+// そのため、const hardhat = require("hardhat")のように、hreをインポートしていなくても使える。
+
+
 const main = async () => {
+
   // Solidityファイルをコンパイルする
-  const nftContractFactory = await hre.ethers.getContractFactory('MyEpicNFT');
+  const nftContractFactory = await hre.ethers.getContractFactory('MyEpicNFTTest');
 
   // Hardhatによって小さいEthereumNetworkを構築し、かつSolidityファイルに書かれたスマートコントラクトを実行する
   const nftContract = await nftContractFactory.deploy();
@@ -10,21 +19,9 @@ const main = async () => {
 
   // コンソールにコントラクトアドレスを吐き出す。
   console.log("Contract deployed to:", nftContract.address);
+}
 
-  // 関数を実行する（NFTをミントする関数）
-  let txn = await nftContract.makeAnEpicNFT()
-
-  // NFTがミントされるまで待つ。
-  await txn.wait()
-
-  // 2個目のNFTをミントしてみる（NFTをミントする関数）
-  txn = await nftContract.makeAnEpicNFT()
-
-  // NFTが民とされるまで待つ
-  await txn.wait()
-};
-
-const runMain = async () => {
+const runMain = async() => {
   try {
     await main();
     process.exit(0);

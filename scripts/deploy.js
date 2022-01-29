@@ -16,12 +16,14 @@ const main = async () => {
 
   // NFTがミントされるまで待つ。
   await txn.wait()
+  console.log("Minted NFT #1")
 
   // 2個目のNFTをミントしてみる（NFTをミントする関数）
   txn = await nftContract.makeAnEpicNFT()
 
   // NFTが民とされるまで待つ
   await txn.wait()
+  console.log("Minted NFT #2")
 };
 
 const runMain = async () => {
