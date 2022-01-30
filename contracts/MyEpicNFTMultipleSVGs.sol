@@ -19,6 +19,9 @@ contract MyEpicNFTMultipleSVGs is ERC721URIStorage {
 	string[] secondWords = ["lll", "ooo", "ccc", "xxx", "nnn"];
 	string[] thirdWords = ["KKK", "III", "OOO", "VVV", "QQQ"];
 
+	// フロント側に通知するためのイベントを作成する
+	event NewEpicNFTMinted(address sender, uint256 tokenId);
+
 	constructor() ERC721 ("SquareNFT", "SQUARE") {
 		console.log("This is my NFT contract. Woah!");
 	}
@@ -108,6 +111,9 @@ contract MyEpicNFTMultipleSVGs is ERC721URIStorage {
 		// トークンIDをインクリメントさせる
 		_tokenIds.increment();
 		console.log("An NFT w/ ID %s has been minted to %s", newItemId, msg.sender);
+
+		// 実際にイベントを発行して、フロント側に通知を送る。
+		emit NewEpicNFTMinted(msg.sender, newItemId);
 	}
 
 
